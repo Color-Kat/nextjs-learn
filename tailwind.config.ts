@@ -23,11 +23,11 @@ const config: Config = {
                 'app-light':
                     '#f1f1f1',
                 'app-primary':
-                    '#818cf8',
+                    '#f8ad81',
                 'app-secondary':
-                    '#2467cc',
+                    '#cc4e24',
                 'app-accent':
-                    '#6366f1',
+                    '#f1a163',
 
             },
             animation: {

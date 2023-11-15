@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {ReactNode, useState} from 'react';
 import {twJoin} from "tailwind-merge";
 
-const Main: React.FC<{ children: React.ReactElement }> =
+const Main: React.FC<{ children: ReactNode }> =
     ({children}) => {
         const [theme, setTheme] = useState('light');
 

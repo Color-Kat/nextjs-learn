@@ -1,7 +1,7 @@
 import axios from "axios";
 import {IPost} from "@/interfaces/post.interface.ts";
 
-const API_URL = 'https://jsonplaceholder.org';
+const API_URL = process.env.API_URL;
 
 axios.defaults.baseURL = API_URL;
 

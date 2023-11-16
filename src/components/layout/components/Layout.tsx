@@ -7,6 +7,12 @@ import {MobileBottomMenu} from "./MobileBottomMenu.tsx";
 import {Meta} from "@/components/seo/Meta.tsx";
 import {IMeta} from "@/components/seo/meta.interface.ts";
 
+import dynamic from "next/dynamic";
+
+const DynamicFooter = dynamic(() => import('./Footer'), {
+    ssr: false
+});
+
 export const Layout: React.FC<IMeta & {
     children: ReactNode
 }> = memo(({
@@ -41,6 +47,7 @@ export const Layout: React.FC<IMeta & {
 
                     {/*    // <SimpleFooter/>*/}
                     {/*    <Footer />*/}
+                    <DynamicFooter/>
                 </div>
 
                 <MobileBottomMenu/>

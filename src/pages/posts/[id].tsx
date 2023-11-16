@@ -1,15 +1,35 @@
-import {NextPage} from 'next';
-import {useRouter} from "next/router";
+import {GetStaticPaths, GetStaticProps, NextPage} from 'next';
+import {IPost} from "@/interfaces/post.interface.ts";
+import {PostsService} from "@/services/posts.service.ts";
+import {Post} from "@/pageComponents/Post/Post.tsx";
 
-const PostPage: NextPage = ({}) => {
-    const {asPath, pathname} = useRouter();
-    console.log(asPath, pathname);
+const PostPage: NextPage<{ post: IPost }> = ({post}) => {
 
-    return (
-        <div>
-
-        </div>
-    );
+    return (<Post post={post}/>);
 };
+
+export const getStaticPaths: GetStaticPaths = async () => {
+    const posts = await PostsService.getAll();
+
+    return {
+        paths: posts.map(post => ({
+            params: {id: post.id.toString()}
+        })),
+        fallback: 'blocking'
+    };
+};
+
+
+export const getStaticProps: GetStaticProps<{ post: IPost }> = async ({
+                                                                          params
+                                                                      }) => {
+    const post = await PostsService.getById(String(params?.id));
+
+    return {
+        props: {post},
+        revalidate: 60
+    };
+};
+
 
 export default PostPage;

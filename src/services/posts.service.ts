@@ -10,7 +10,7 @@ export const PostsService = {
         const {data} = await axios.get<IPost[]>(`/posts`);
         return data;
     },
-    async getById(id: number) {
+    async getById(id: string) {
         const {data} = await axios.get<IPost>(`/posts/${id}`);
         return data;
     }
